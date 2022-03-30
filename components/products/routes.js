@@ -17,7 +17,7 @@ export default (app) => {
 
   productsRouter.get('/:id', authToken, productsController.getProduct);
 
-  productsRouter.post('/:id', authToken, productsController.addProductToCart);
+  // productsRouter.post('/:id', authToken, productsController.addProductToCart);
 
   productsRouter.post('/', authToken, productsController.createProduct);
 

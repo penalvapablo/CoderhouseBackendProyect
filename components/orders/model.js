@@ -11,6 +11,7 @@ const OrderSchema = mongoose.Schema({
   },
   date: { type: String, require: true, trim: true },
   state: { type: String, require: true, trim: true },
+  deliveryAddress: { type: String, require: true, trim: true },
 });
 
 const Orders = mongoose.model('orders', OrderSchema);

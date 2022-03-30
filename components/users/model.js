@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import cartItemSchema from '../carts/model.js';
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -12,7 +11,6 @@ const userSchema = new mongoose.Schema({
   password: { type: String, require: true, trim: true },
   fullname: { type: String, require: true, trim: true },
   phone: { type: String, require: true, trim: true },
-  cart: [cartItemSchema],
 });
 
 //Hash password before saving

@@ -9,7 +9,9 @@ export default (app) => {
 
   cartRouter.get('/', authToken, cartsController.getCart);
 
-  cartRouter.put('/:id', authToken, cartsController.updateCart);
+  cartRouter.post('/', authToken, cartsController.addProductsToCart);
 
-  cartRouter.delete('/', authToken, cartsController.emptyCart);
+  cartRouter.put('/', authToken, cartsController.updateCart);
+
+  cartRouter.delete('/', authToken, cartsController.deleteCart);
 };
