@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <script>
+    const token = document.cookie.split('=')[1];
+    console.log(token);
+  </script>
+  <body>
+    <div class="container my-5">
+      <div class="jumbotron">
+        <h1>REGISTRO</h1>
+        <br />
+        <form
+          class="form"
+          action="/signup"
+          method="post"
+          role="form"
+          autocomplete="off"
+        >
+          <div class="form-group">
+            <input
+              id="fullname"
+              name="fullname"
+              placeholder="fullname"
+              class="form-control"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              id="email"
+              name="email"
+              placeholder="email"
+              class="form-control"
+              type="email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              id="password1"
+              name="password1"
+              placeholder="password"
+              class="form-control"
+              type="password"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              id="password2"
+              name="password2"
+              placeholder="repeat password"
+              class="form-control"
+              type="password"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              id="phone"
+              name="phone"
+              placeholder="phone"
+              class="form-control"
+              type="tel"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              class="btn btn-success my-3"
+              type="submit"
+              value="Registro"
+            />
+          </div>
+        </form>
+
+        <hr />
+
+        <div class="text-left">
+          <button
+            id="login"
+            class="btn btn-success my-3"
+            onclick="location.href = '/login'"
+          >
+            Ir a Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
