@@ -9,6 +9,9 @@ class cartsCrontroller {
     try {
       const user = await User.findById(req.user._id);
       const cart = await cartsDao.get(user);
+      if (!cart)
+        return res.status(404).json({ error_description: 'cart empty' });
+
       const cartArr = await Promise.all(
         cart.products.map(async (element) => {
           return {
@@ -75,25 +78,33 @@ class cartsCrontroller {
   async updateCart(req, res) {
     try {
       const user = await User.findById(req.user._id);
-      /* En el array "newCartProducts" se deben poner los Id de los productos que ya estén en el carrito, y las cantidades actualizadas.
-      newCartProducts = [{
-        "productId":"asdasd",
-        "quantity": 1
-      }]
-      Si la cantidad es 0, se va a eliminar el producto del carrito. Si se omite algún producto, este será eliminado. Este array va a reemplazar al array "products" del carrito*/
-      let { newCartProducts } = req.body;
-      newCartProducts.forEach((product) => {
-        if (product.quantity < 1) {
-          const indexOfProductToDelete = newCartProducts.indexOf(product);
-          console.log({ indexOfProductToDelete });
-          newCartProducts.splice(indexOfProductToDelete, 1);
-        }
-      });
+      const date = moment(new Date()).format('DD/MM/YY HH:mm');
+      const productId = req.params.id;
+      const { quantity } = req.body;
+      // newCartProducts.forEach((product) => {
+      //   if (product.quantity < 1) {
+      //     const indexOfProductToDelete = newCartProducts.indexOf(product);
+      //     console.log({ indexOfProductToDelete });
+      //     newCartProducts.splice(indexOfProductToDelete, 1);
+      //   }
+      // });
       const cart = await cartsDao.get(user);
-      cart.products = newCartProducts;
+      let isProductInCart;
+      cart.products.forEach((product) => {
+        if (product.productId === productId) isProductInCart = product;
+      });
+      if (!isProductInCart) {
+        return res
+          .status(400)
+          .json({ error_description: 'product is not in cart' });
+      }
+      const indexOfProductToUpdate = cart.products.indexOf(isProductInCart);
+      const newQuantity = quantity;
+      cart.date = date;
+      cart.products[indexOfProductToUpdate].quantity = newQuantity;
       await cartsDao.update(cart._id, cart);
 
-      res.status(200).json(cart);
+      res.status(200).json({ message: 'item in cart updated', cart });
     } catch (error) {
       console.log(`Error al actualizar producto del carrito. ${error}`);
       return res.status(500).json({ error_description: 'Error del servidor.' });

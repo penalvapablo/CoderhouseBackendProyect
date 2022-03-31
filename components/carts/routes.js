@@ -11,7 +11,7 @@ export default (app) => {
 
   cartRouter.post('/', authToken, cartsController.addProductsToCart);
 
-  cartRouter.put('/', authToken, cartsController.updateCart);
+  cartRouter.put('/:id', authToken, cartsController.updateCart);
 
   cartRouter.delete('/', authToken, cartsController.deleteCart);
 };
