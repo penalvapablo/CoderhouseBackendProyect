@@ -10,14 +10,12 @@ export default (app) => {
   productsRouter.get('/', authToken, productsController.getProducts);
 
   productsRouter.get(
-    '/:category',
+    '/category/:category',
     authToken,
     productsController.getProductsByCategory
   );
 
   productsRouter.get('/:id', authToken, productsController.getProduct);
-
-  // productsRouter.post('/:id', authToken, productsController.addProductToCart);
 
   productsRouter.post('/', authToken, productsController.createProduct);
 
