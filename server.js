@@ -1,6 +1,5 @@
 import express from 'express';
 import moment from 'moment';
-import exphbs from 'express-handlebars';
 import cors from 'cors';
 import routes from './routes/index.js';
 import './config/db.js';
@@ -12,7 +11,6 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-// import startSocket from './components/chat/services/socket.js';
 import chatDao from './components/chat/dao.js';
 
 /**
