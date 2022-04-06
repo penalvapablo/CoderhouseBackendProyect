@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb';
 import Products from '../products/model.js';
 import User from '../users/model.js';
 import moment from 'moment';
@@ -81,13 +80,7 @@ class cartsCrontroller {
       const date = moment(new Date()).format('DD/MM/YY HH:mm');
       const productId = req.params.id;
       const { quantity } = req.body;
-      // newCartProducts.forEach((product) => {
-      //   if (product.quantity < 1) {
-      //     const indexOfProductToDelete = newCartProducts.indexOf(product);
-      //     console.log({ indexOfProductToDelete });
-      //     newCartProducts.splice(indexOfProductToDelete, 1);
-      //   }
-      // });
+
       const cart = await cartsDao.get(user);
       let isProductInCart;
       cart.products.forEach((product) => {
@@ -116,7 +109,7 @@ class cartsCrontroller {
       const user = await User.findById(req.user._id);
       const cart = await cartsDao.get(user);
       await cartsDao.delete(cart._id);
-      res.status(200).json({ message: 'carrito eliminado' });
+      res.status(200).json({ message: 'cart deleted' });
     } catch (error) {
       console.log(`Error al vaciar el carrito. ${error}`);
       return res.status(500).json({ error_description: 'Error del servidor.' });

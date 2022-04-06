@@ -5,7 +5,7 @@ class ordersDao {
     try {
       return await Orders.find(query);
     } catch (error) {
-      console.log(`error al buscar los productos en la db . ${error}`);
+      console.log(`error al buscar las órdenes en la db . ${error}`);
     }
   }
 

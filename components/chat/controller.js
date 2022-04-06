@@ -7,7 +7,7 @@ class chatController {
       if (!user) return res.redirect('login');
       res.render('chat', { user });
     } catch (error) {
-      console.log(`Error al generar la orden. ${error}`);
+      console.log(`Error al buscar los mensajes. ${error}`);
       return res.status(500).json({ error_description: 'Error del servidor.' });
     }
   }
@@ -18,7 +18,7 @@ class chatController {
       const messages = await chatDao.listAll();
       res.render('chat-admin', { messages });
     } catch (error) {
-      console.log(`Error al generar la orden. ${error}`);
+      console.log(`Error al buscar los mensajes del usuario. ${error}`);
       return res.status(500).json({ error_description: 'Error del servidor.' });
     }
   }
@@ -31,7 +31,7 @@ class chatController {
       const messages = await chatDao.listByEmail(email);
       res.render('chat-user', { messages });
     } catch (error) {
-      console.log(`Error al generar la orden. ${error}`);
+      console.log(`Error buscar los mensajes para el admin. ${error}`);
       return res.status(500).json({ error_description: 'Error del servidor.' });
     }
   }
@@ -41,7 +41,7 @@ class chatController {
       const message = await chatDao.listById(id);
       res.render('chat_admin_response', { message });
     } catch (error) {
-      console.log(`Error al generar la orden. ${error}`);
+      console.log(error);
       return res.status(500).json({ error_description: 'Error del servidor.' });
     }
   }
@@ -54,7 +54,7 @@ class chatController {
       await chatDao.update(id, message);
       res.redirect('/chat/admin');
     } catch (error) {
-      console.log(`Error al generar la orden. ${error}`);
+      console.log(error);
       return res.status(500).json({ error_description: 'Error del servidor.' });
     }
   }

@@ -22,6 +22,12 @@
       <div>
         <h3 class="fw-bold email"><%= user.email %></h1>
       </div>
+      <button
+      class="btn btn-success my-3"
+      onclick="location.href = '/chat/<%= user.email %>'"
+    >
+      See only your messages
+    </button>
       <% if (user.email === 'admin@admin') { %>
         <button
         class="btn btn-success my-3"

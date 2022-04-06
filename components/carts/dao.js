@@ -5,7 +5,7 @@ class cartsDao {
     try {
       return await Carts.find(query);
     } catch (error) {
-      console.log(`error al buscar los productos en la db . ${error}`);
+      console.log(`error al buscar los carritos en la db . ${error}`);
     }
   }
 
@@ -13,7 +13,7 @@ class cartsDao {
     try {
       return await Carts.findOne({ userEmail: user.email });
     } catch (error) {
-      console.log(`error al buscar producto en la db . ${error}`);
+      console.log(`error al buscar el carrito en la db . ${error}`);
     }
   }
 
@@ -21,7 +21,7 @@ class cartsDao {
     try {
       return await Carts.create(cartData);
     } catch (error) {
-      console.log(`error al crear producto en la db. ${error}`);
+      console.log(`error al crear carrito en la db. ${error}`);
     }
   }
 
@@ -29,7 +29,7 @@ class cartsDao {
     try {
       return await Carts.findByIdAndUpdate(id, updatedProduct);
     } catch (error) {
-      console.log(`error al actualizar producto en la db. ${error}`);
+      console.log(`error al actualizar el carrito en la db. ${error}`);
     }
   }
 
@@ -37,7 +37,7 @@ class cartsDao {
     try {
       return await Carts.findByIdAndDelete(id);
     } catch (error) {
-      console.log(`error al borrar producto en la db . ${error}`);
+      console.log(`error al borrar el carrito en la db . ${error}`);
     }
   }
 }

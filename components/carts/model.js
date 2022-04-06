@@ -9,9 +9,6 @@ const cartSchema = mongoose.Schema({
   },
   date: { type: String, require: true, trim: true },
   products: [],
-  // product: { type: mongoose.Schema.ObjectId, ref: 'products' },
-  // quantity: { type: Number, require: true, trim: true },
-  // deliveryAddress: { type: String, require: true, trim: true },
 });
 
 const Carts = mongoose.model('carts', cartSchema);

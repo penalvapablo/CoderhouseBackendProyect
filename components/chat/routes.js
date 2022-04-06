@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import chatDao from './dao.js';
 import chatController from './controller.js';
 
 const chatRouter = new Router();
