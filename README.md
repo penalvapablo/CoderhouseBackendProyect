@@ -22,7 +22,7 @@ npm install
 ```bash
 npm start
 ```
-4. Go to localhost:8080 to sign up. Then login to get the token. You can try the chat in the web, going to localhost:8080/chat. To try the products, carts and orders endpoints, read the  _[Endpoints Documentation](https://documenter.getpostman.com/view/17950634/UVymzxZG)_ 
+4. Go to localhost:8080 to sign up. Then login to get the token. You can try the chat in the web, going to localhost:8080/chat. To try the products, carts and orders endpoints, read the  _[Endpoints Documentation](https://documenter.getpostman.com/view/17950634/UVyvutr4)_ 
 5. If you login with user admin@admin, password "admin", yo can answer the chat messages as if you were the administrator
 
 ## Features
