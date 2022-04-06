@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" href="#" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="./chat.js" defer></script>
+    <title>Sessions</title>
+  </head>
+  <body class="container">
+    <div class="container-fluid">
+      <div>
+        <h3 class="fw-bold email"><%= user.email %></h1>
+      </div>
+      <% if (user.email === 'admin@admin') { %>
+        <button
+        class="btn btn-success my-3"
+        onclick="location.href = '/chat/admin'"
+      >
+        Respond messages
+      </button>
+      <% } %>    
+      <div class="chat pt-4 mb-2">
+        <h2 class="mb-4 mt-4">Chat</h2>
+        <form class="chat-form">
+          <div class="chat-messages mb-3"></div>
+
+          <div class="row">
+            <div class="mb-3 col-auto">
+              <input
+                class="form-control"
+                type="text"
+                name="message"
+                required
+                placeholder="Ingrese un mensaje..."
+              />
+            </div>
+
+            <div class="col-auto">
+              <button class="btn btn-primary" type="submit">Enviar!</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+</html>

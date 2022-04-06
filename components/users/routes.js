@@ -1,5 +1,4 @@
 import { Router } from 'express';
-// import passport from 'passport';
 import isRegistered from './utils/isRegistered.js';
 import validateUserData from './utils/validateUserData.js';
 import usersController from './controller.js';
@@ -10,9 +9,10 @@ const userRouter = new Router();
 userRouter.get('/signUp', (req, res) => {
   res.render('signup');
 });
+
 userRouter.get('/login', (req, res) => {
   if (req.session.user) {
-    res.redirect('products');
+    return res.redirect('products');
   }
   res.render('login');
 });

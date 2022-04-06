@@ -29,7 +29,7 @@ class usersController {
       const isValid = await validPassword(password, user.password);
       if (!isValid)
         return res.status(404).json({ error_description: 'wrong password' });
-      req.session.user = user.fullname;
+      req.session.user = user;
       return res.json({ token: await generateToken(user) });
     } catch (error) {
       console.log(error);

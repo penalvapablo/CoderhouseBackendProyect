@@ -42,6 +42,17 @@ class orderController {
       return res.status(500).json({ error_description: 'Error del servidor.' });
     }
   }
+
+  async getOrders(req, res) {
+    try {
+      const orders = await ordersDao.getAll();
+
+      return res.status(200).json(orders);
+    } catch (error) {
+      console.log(`Error al buscar las órdenes. ${error}`);
+      return res.status(500).json({ error_description: 'Error del servidor.' });
+    }
+  }
 }
 
 export default new orderController();

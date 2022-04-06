@@ -1,4 +1,5 @@
 import express from 'express';
+import moment from 'moment';
 import exphbs from 'express-handlebars';
 import cors from 'cors';
 import routes from './routes/index.js';
@@ -9,15 +10,17 @@ import MongoStore from 'connect-mongo';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
+import { createServer } from 'http';
 import { Server } from 'socket.io';
-import httpModule from 'http';
+// import startSocket from './components/chat/services/socket.js';
+import chatDao from './components/chat/dao.js';
 
 /**
  * -------------- GENERAL SETUP ----------------
  */
 
 const app = express();
-const httpServer = httpModule.Server(app);
+const httpServer = createServer(app);
 const io = new Server(httpServer);
 
 app.use(express.json());
@@ -45,27 +48,31 @@ app.use(
   })
 );
 
-//  app.engine(
-//   'handlebars',
-//   exphbs({
-//     extname: 'hanblebars',
-//     defaultLayout: 'home.handlebars',
-//     layoutsDir: __dirname + '/views/layouts',
-//     partialsDir: __dirname + '/views/partials',
-//   })
-// );
-
-// app.set('view engine', 'handlebars');
-// app.set('views', __dirname + '/views');
-
-/**
- * -------------- PRUEBAS ----------------
- */
-
 /**
  * -------------- RUTES ----------------
  */
 routes(app);
+
+/* SOCKETS */
+io.on('connection', async (socket) => {
+  console.log('nuevo cliente conectado');
+
+  io.sockets.emit('messages', await chatDao.listAll());
+
+  socket.on('message', async (data) => {
+    const { text, email } = data;
+    const newMessage = {
+      email,
+      text,
+      date: moment(new Date()).format('DD/MM/YYYY HH:mm'),
+    };
+
+    await chatDao.save(newMessage);
+
+    io.sockets.emit('messages', await chatDao.listAll());
+  });
+});
+/* SOCKETS */
 
 /**
  * -------------- Global variables ----------------
